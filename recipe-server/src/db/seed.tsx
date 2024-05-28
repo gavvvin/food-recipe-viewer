@@ -5,9 +5,10 @@ export const seedDatabase = async () => {
   try {
     const db = await connectToDB();
     const recipesCollection = db.collection("recipes");
-    recipesCollection.drop();
-    recipesCollection.insertMany(RecipeMockData);
-    return;
+    recipesCollection.drop().then(() => {
+      recipesCollection.insertMany(RecipeMockData);
+      return;
+    });
   } catch (err) {
     console.log(err);
   }

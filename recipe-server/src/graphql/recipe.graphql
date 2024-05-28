@@ -4,9 +4,17 @@ type Query {
 }
 
 type Mutation {
-  createRecipe(name: String!, position: String, level: String): Recipe
-  deleteRecipe(id: ID!): Boolean
-  updateRecipe(id: ID!, name: String, position: String, level: String): Recipe
+  createRecipe(
+    author: String
+    title: String!
+    subtitle: String
+    image: String
+    cookingTimeInMins: Int
+    ingredients: [IngredientInput]
+    instructions: [String]
+    dietTypes: [DietType]
+  ): Recipe
+  addRating(review: ReviewInput): Recipe
 }
 
 type Recipe {
@@ -39,7 +47,20 @@ type Ingredient {
   unit: String
 }
 
+input IngredientInput {
+  ingredient: String
+  amount: Float
+  unit: String
+}
+
 type Review {
+  author: String
+  rating: Int
+  comment: String
+}
+
+input ReviewInput {
+  id: ID
   author: String
   rating: Int
   comment: String

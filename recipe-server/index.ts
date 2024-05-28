@@ -28,7 +28,7 @@ app.put("/seed", async (_, res) => {
 initialiseApolloServer(app);
 
 server.listen({ port: 3001 }, () => {
-  console.log("ChargePoint Server Ready on port 3001");
+  console.log("Server Ready on port 3001");
 });
 
 // Shut down in the case of interrupt and termination signals
