@@ -10,7 +10,7 @@ type Mutation {
 }
 
 type Recipe {
-  id: ID
+  _id: ID
   author: String
   title: String!
   subtitle: String

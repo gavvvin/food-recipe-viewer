@@ -1,6 +1,6 @@
 export const RecipeMockData = [
   {
-    id: 1,
+    author: "Henry Ford",
     title: "Mustang Mashed Potatoes",
     subtitle: "Mash your way to a smooth ride",
     cookingTimeInMins: 35,
@@ -29,7 +29,7 @@ export const RecipeMockData = [
     ],
   },
   {
-    id: 2,
+    author: "Clara Ford",
     title: "Fiesta Fajitas",
     subtitle: "Drive your taste buds wild",
     cookingTimeInMins: 40,
@@ -57,7 +57,7 @@ export const RecipeMockData = [
     ],
   },
   {
-    id: 3,
+    author: "Edsel Ford",
     title: "Expedition Aubergine Parmesan",
     subtitle: "Embark on a culinary adventure",
     cookingTimeInMins: 60,
@@ -89,7 +89,7 @@ export const RecipeMockData = [
     ],
   },
   {
-    id: 4,
+    author: "Eleanor Ford",
     title: "Focus Frittata",
     subtitle: "Stay sharp with this protein-packed meal",
     cookingTimeInMins: 30,
@@ -119,7 +119,7 @@ export const RecipeMockData = [
     ],
   },
   {
-    id: 5,
+    author: "William Ford",
     title: "Ranger Roasted Vegetables",
     subtitle: "Off-road your way to healthy eating",
     cookingTimeInMins: 45,

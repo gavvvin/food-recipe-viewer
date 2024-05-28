@@ -1,8 +1,7 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 
-async function connectToDB() {
+export async function connectToDB() {
   const uri = process.env.MONGO_DB_ENDPOINT || "";
-  console.log(process.env.MONGO_DB_ENDPOINT);
   const client = new MongoClient(uri, {
     serverApi: {
       version: ServerApiVersion.v1,
@@ -18,10 +17,4 @@ async function connectToDB() {
     console.error(err);
     throw err;
   }
-}
-
-export async function getRecipes() {
-  const db = await connectToDB();
-  const recipesCollection = db.collection("recipes");
-  return recipesCollection.find().toArray();
 }
