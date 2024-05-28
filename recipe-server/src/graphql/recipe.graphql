@@ -1,0 +1,46 @@
+type Query {
+  recipe(id: ID!): Recipe
+  recipes: [Recipe]
+}
+
+type Mutation {
+  createRecipe(name: String!, position: String, level: String): Recipe
+  deleteRecipe(id: ID!): Boolean
+  updateRecipe(id: ID!, name: String, position: String, level: String): Recipe
+}
+
+type Recipe {
+  id: ID
+  author: String
+  title: String!
+  subtitle: String
+  image: String # encoded in base64
+  cookingTimeInMins: Int
+  ingredients: [Ingredient]
+  instructions: [String]
+  dietTypes: [DietType]
+  reviews: [Review]
+}
+
+enum DietType {
+  VEGETARIAN
+  VEGAN
+  GLUTEN_FREE
+  DIARY_FREE
+  HIGH_PROTEIN
+  LOW_FAT
+  NUT_FREE
+  EGG_FREE
+}
+
+type Ingredient {
+  ingredient: String
+  amount: Float
+  unit: String
+}
+
+type Review {
+  author: String
+  rating: Int
+  comment: String
+}

@@ -3,24 +3,42 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "env-cmd -f ./.env next dev ./recipe-app",
+    "build": "env-cmd -f ./.env next build ./recipe-app",
+    "start": "env-cmd -f ./.env next start ./recipe-app",
+    "lint": "next lint ./recipe-app",
+    "server:start": "npx nodemon ./recipe-server/index.ts",
+    "server:stop": "npx kill-port 4010",
+    "format": "prettier --write \"**/*.{ts,tsx,json,js,jsx,html,yml,md,graphql}\" \"!**/dist/**\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,json,js,jsx,html,yml,md,graphql}\" \"!**/dist/**\""
   },
   "dependencies": {
+    "@apollo/federation": "^0.38.1",
+    "@apollo/server": "^4.10.4",
+    "@apollo/subgraph": "^2.7.8",
+    "apollo-server-express": "^3.13.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "env-cmd": "^10.1.0",
+    "express": "^4.19.2",
+    "graphql": "^16.8.1",
+    "graphql-tag": "^2.12.6",
+    "mongodb": "^6.6.2",
+    "next": "14.2.3",
+    "prettier": "^3.2.5",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.3"
+    "schemaglue": "^4.3.0",
+    "styled-components": "^6.1.11"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.3"
+    "typescript": "^5"
   }
 }
