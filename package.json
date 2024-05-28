@@ -13,6 +13,7 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,json,js,jsx,html,yml,md,graphql}\" \"!**/dist/**\""
   },
   "dependencies": {
+    "@apollo/client": "^3.10.4",
     "@apollo/federation": "^0.38.1",
     "@apollo/server": "^4.10.4",
     "@apollo/subgraph": "^2.7.8",

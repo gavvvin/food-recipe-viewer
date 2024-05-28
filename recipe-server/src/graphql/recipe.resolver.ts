@@ -4,9 +4,7 @@ import { ReviewInput, Recipe } from "../types/recipe.types";
 const recipeResolver = {
   Query: {
     recipes: async () => await getRecipes(),
-    recipe: async (_: any, { id }: { id: string }) => {
-      await getRecipes(id);
-    },
+    recipe: async (_: any, { id }: { id: string }) => await getRecipes(id),
   },
   Mutation: {
     createRecipe: async (

@@ -8,9 +8,9 @@ export const getRecipes = async (id?: string) => {
     const recipesCollection = db.collection("recipes");
 
     if (id) {
-      return recipesCollection.findOne({ _id: new ObjectId(id) });
+      return await recipesCollection.findOne({ _id: new ObjectId(id) });
     } else {
-      return recipesCollection.find().toArray();
+      return await recipesCollection.find().toArray();
     }
   } catch (err) {
     console.log(err);
