@@ -4,7 +4,10 @@ export const GET_RECIPES = gql`
   query getAllRecipes {
     recipes {
       _id
-      author
+      author {
+        name
+        userId
+      }
       title
       subtitle
       image
@@ -29,7 +32,10 @@ export const GET_RECIPE = gql`
   query getRecipe($id: ID!) {
     recipe(id: $id) {
       _id
-      author
+      author {
+        name
+        userId
+      }
       title
       subtitle
       image

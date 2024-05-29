@@ -17,6 +17,7 @@
     "@apollo/federation": "^0.38.1",
     "@apollo/server": "^4.10.4",
     "@apollo/subgraph": "^2.7.8",
+    "@carbon/icons-react": "^11.42.0",
     "apollo-server-express": "^3.13.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

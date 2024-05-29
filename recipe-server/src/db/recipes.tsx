@@ -54,19 +54,21 @@ export const getUser = async (userId: string) => {
     return await userCollection
       .findOne({ userId: parseInt(userId) })
       .then(async (data) => {
-        const fullRecipeData = data && await Promise.all (
+        const fullRecipeData =
+          data &&
+          (await Promise.all(
             data.favoriteRecipes.map(async (recipeId: string) => {
-            const recipe = await recipesCollection.findOne({
+              const recipe = await recipesCollection.findOne({
                 _id: new ObjectId(recipeId),
-              })
-              return recipe
-            }
-        ));
+              });
+              return recipe;
+            }),
+          ));
         return {
-            ...data,
-            favoriteRecipes: fullRecipeData
-        }
-      })
+          ...data,
+          favoriteRecipes: fullRecipeData,
+        };
+      });
   } catch (err) {
     console.log(err);
     throw err;
