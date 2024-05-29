@@ -150,7 +150,6 @@ export const addRating = async ({ id, author, rating, comment }: Review) => {
 
 export const favoriteRecipe = async ({ userId, recipeId, isFavorite }: any) => {
   try {
-    console.log(userId, typeof userId, recipeId, isFavorite);
     if (!userId) throw new Error("Missing user ID");
     if (!recipeId) throw new Error("Missing recipe ID");
 

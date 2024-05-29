@@ -5,7 +5,7 @@ import {
   favoriteRecipe,
   getUser,
 } from "../db/recipes";
-import { ReviewInput, Recipe } from "../types/recipe.types";
+import { Recipe } from "../types/recipe.types";
 
 const recipeResolver = {
   Query: {
@@ -40,7 +40,12 @@ const recipeResolver = {
 
     addRating: async (
       _: any,
-      { review: { id, author, rating, comment } }: ReviewInput,
+      {
+        id,
+        author,
+        rating,
+        comment,
+      }: { id: string; author: string; rating: number; comment: string },
     ) => {
       return await addRating({ id, author, rating, comment });
     },

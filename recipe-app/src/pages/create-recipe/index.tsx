@@ -5,21 +5,20 @@ import {
   SafeAreaWrapper,
 } from "../../components/atoms/wrapper/wrapper";
 import { Header } from "../../components/sections/header/header";
-import { Recipe } from "../../components/sections/recipe/recipe";
+import { CreateRecipe } from "../../components/sections/createRecipe/createRecipe";
 
-export const RecipePage = () => {
+export const CreateRecipePage = () => {
   const router = useRouter();
-  const { recipeId } = router.query;
   return (
     <PageCanvas>
       <Header />
       <ContentWrapper>
         <SafeAreaWrapper>
-          <Recipe recipeId={recipeId && recipeId.toString()} />
+          <CreateRecipe />
         </SafeAreaWrapper>
       </ContentWrapper>
     </PageCanvas>
   );
 };
 
-export default RecipePage;
+export default CreateRecipePage;

@@ -15,7 +15,7 @@ type Mutation {
     instructions: [String]
     dietTypes: [DietType]
   ): Recipe
-  addRating(review: ReviewInput): Recipe
+  addRating(id: ID, author: String, rating: Int, comment: String): Recipe
   favoriteRecipe(userId: ID, recipeId: ID, isFavorite: Boolean): User
 }
 

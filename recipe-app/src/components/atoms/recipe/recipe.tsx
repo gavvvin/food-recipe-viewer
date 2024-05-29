@@ -1,12 +1,15 @@
 import styled from "styled-components";
-import { Caption, Subtitle, Tag, Title } from "../text/text";
+import { Subtitle, Tag, TimeText, Title } from "../text/text";
 import { convertMinsToHours } from "../../utils/util-functions";
-import { Time, NoImage } from "@carbon/icons-react";
-import { CardWrapper, TimeDisplay } from "../wrapper/wrapper";
+import { Time, NoImage, Favorite, FavoriteFilled } from "@carbon/icons-react";
+import { CardWrapper, FlexBox, TimeDisplayRight } from "../wrapper/wrapper";
 import { useRouter } from "next/router";
+import { useMutation } from "@apollo/client";
+import { SET_FAVORITE } from "../../utils/queries";
 
 interface IRecipe extends Recipe {
   key: string;
+  isFavorite: boolean;
 }
 
 const ImageWrapper = styled.div`
@@ -35,14 +38,16 @@ const CardContent = styled.div`
   position: relative;
 `;
 
-const TimeText = styled(Caption)`
-  margin-left: 0.25rem;
-`;
-
 const DietTypes = styled.div`
   margin-top: 2rem;
 `;
 
+const FavoriteButton = styled.div`
+  margin-left: 1rem;
+  cursor: pointer;
+`;
+
+// Recipe card component
 export const Recipe = ({
   key,
   recipeId,
@@ -51,20 +56,30 @@ export const Recipe = ({
   image,
   cookingTimeInMins,
   dietTypes,
+  isFavorite,
 }: IRecipe) => {
   const router = useRouter();
+
+  const [setFavorite] = useMutation(SET_FAVORITE);
+
+  const handleFavorite = async () => {
+    try {
+      const { data } = await setFavorite({
+        variables: {
+          userId: 1,
+          isFavorite: !isFavorite,
+          recipeId: recipeId,
+        },
+      });
+
+      window.location.reload();
+    } catch (error) {
+      console.error("Error submitting review:", error);
+    }
+  };
+
   return (
-    <CardWrapper
-      key={key}
-      onClick={() => {
-        router.push({
-          pathname: "/recipe",
-          query: {
-            recipeId: recipeId,
-          },
-        });
-      }}
-    >
+    <CardWrapper key={key}>
       <ImageWrapper>
         {image ? (
           <Image src={image} alt={title} />
@@ -77,7 +92,28 @@ export const Recipe = ({
       </ImageWrapper>
       <CardContent>
         <div>
-          <Title>{title}</Title>
+          <FlexBox>
+            <Title
+              onClick={() => {
+                router.push({
+                  pathname: "/recipe",
+                  query: {
+                    recipeId: recipeId,
+                  },
+                });
+              }}
+              style={{ cursor: "pointer" }}
+            >
+              {title}
+            </Title>
+            <FavoriteButton onClick={handleFavorite}>
+              {isFavorite ? (
+                <FavoriteFilled size={25} />
+              ) : (
+                <Favorite size={25} />
+              )}
+            </FavoriteButton>
+          </FlexBox>
           <Subtitle>{subtitle}</Subtitle>
 
           <DietTypes>
@@ -87,10 +123,10 @@ export const Recipe = ({
           </DietTypes>
         </div>
 
-        <TimeDisplay>
+        <TimeDisplayRight>
           <Time />
           <TimeText>{convertMinsToHours(cookingTimeInMins)}</TimeText>
-        </TimeDisplay>
+        </TimeDisplayRight>
       </CardContent>
     </CardWrapper>
   );

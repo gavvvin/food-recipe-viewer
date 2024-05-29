@@ -15,6 +15,10 @@ export const Title = styled.div`
   margin: 0.5rem 0;
 `;
 
+export const TitleLg = styled(Title)`
+  font-size: 2.5rem;
+`;
+
 export const Subtitle = styled.div`
   font-size: 1rem;
   color: ${brandStyle.darkGrey};
@@ -38,4 +42,8 @@ export const Tag = styled.div`
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.2rem;
+`;
+
+export const TimeText = styled(Caption)`
+  margin-left: 0.25rem;
 `;
