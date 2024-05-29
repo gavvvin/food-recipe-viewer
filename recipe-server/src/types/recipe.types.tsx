@@ -23,7 +23,8 @@ enum DietType {
 }
 
 export type Recipe = {
-  author: String;
+  author?: String;
+  authorId: string;
   title: String;
   subtitle: String;
   image?: String;

@@ -1,16 +1,23 @@
-import { addRating, createRecipe, getRecipes } from "../db/recipes";
+import {
+  addRating,
+  createRecipe,
+  getRecipes,
+  favoriteRecipe,
+  getUser,
+} from "../db/recipes";
 import { ReviewInput, Recipe } from "../types/recipe.types";
 
 const recipeResolver = {
   Query: {
     recipes: async () => await getRecipes(),
     recipe: async (_: any, { id }: { id: string }) => await getRecipes(id),
+    me: async (_: any, { userId }: { userId: string }) => await getUser(userId),
   },
   Mutation: {
     createRecipe: async (
       _: any,
       {
-        author,
+        authorId,
         title,
         subtitle,
         image,
@@ -21,7 +28,7 @@ const recipeResolver = {
       }: Recipe,
     ) =>
       await createRecipe({
-        author,
+        authorId,
         title,
         subtitle,
         image,
@@ -35,9 +42,10 @@ const recipeResolver = {
       _: any,
       { review: { id, author, rating, comment } }: ReviewInput,
     ) => {
-      console.log(id);
       return await addRating({ id, author, rating, comment });
     },
+    favoriteRecipe: async (_: any, { userId, recipeId, isFavorite }: any) =>
+      await favoriteRecipe({ userId, recipeId, isFavorite }),
   },
 };
 

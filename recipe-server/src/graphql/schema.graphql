@@ -1,11 +1,12 @@
 type Query {
   recipe(id: ID!): Recipe
   recipes: [Recipe]
+  me(userId: ID!): FullUser
 }
 
 type Mutation {
   createRecipe(
-    author: String
+    authorId: ID!
     title: String!
     subtitle: String
     image: String
@@ -15,11 +16,12 @@ type Mutation {
     dietTypes: [DietType]
   ): Recipe
   addRating(review: ReviewInput): Recipe
+  favoriteRecipe(userId: ID, recipeId: ID, isFavorite: Boolean): User
 }
 
 type Recipe {
   _id: ID
-  author: String
+  author: User
   title: String!
   subtitle: String
   image: String # encoded in base64
@@ -64,4 +66,18 @@ input ReviewInput {
   author: String
   rating: Int
   comment: String
+}
+
+type User {
+  _id: ID
+  userId: ID
+  name: String
+  favoriteRecipes: [ID]
+}
+
+type FullUser {
+  _id: ID
+  userId: ID
+  name: String
+  favoriteRecipes: [Recipe]
 }
