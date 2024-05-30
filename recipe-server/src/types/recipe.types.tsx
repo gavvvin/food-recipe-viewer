@@ -11,7 +11,7 @@ export type Review = {
   comment: string;
 };
 
-enum DietType {
+export enum DietType {
   VEGETARIAN,
   VEGAN,
   GLUTEN_FREE,

@@ -1,5 +1,8 @@
+import { ObjectId } from "mongodb";
+
 export const RecipeMockData = [
   {
+    _id: new ObjectId(),
     authorId: 1,
     title: "Mustang Mashed Potatoes",
     subtitle: "Mash your way to a smooth ride",
@@ -31,6 +34,7 @@ export const RecipeMockData = [
     ],
   },
   {
+    _id: new ObjectId(),
     authorId: 2,
     title: "Fiesta Fajitas",
     subtitle: "Drive your taste buds wild",
@@ -59,6 +63,7 @@ export const RecipeMockData = [
     ],
   },
   {
+    _id: new ObjectId(),
     authorId: 3,
     title: "Expedition Aubergine Parmesan",
     subtitle: "Embark on a culinary adventure",
@@ -91,6 +96,7 @@ export const RecipeMockData = [
     ],
   },
   {
+    _id: new ObjectId(),
     authorId: 4,
     title: "Focus Frittata",
     subtitle: "Stay sharp with this protein-packed meal",
@@ -121,6 +127,7 @@ export const RecipeMockData = [
     ],
   },
   {
+    _id: new ObjectId(),
     authorId: 5,
     title: "Ranger Roasted Vegetables",
     subtitle: "Off-road your way to healthy eating",

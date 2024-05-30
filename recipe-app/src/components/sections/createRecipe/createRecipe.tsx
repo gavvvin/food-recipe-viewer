@@ -71,19 +71,19 @@ export const CreateRecipe = () => {
 
       <Section>
         <Subtitle>What is this dish?</Subtitle>
-        <input type="text" {...register("title")} required />
+        <input type="text" aria-label="title" {...register("title")} required />
       </Section>
 
       <Section>
         <Subtitle>
           Write a few words about what&apos;s special about this dish.
         </Subtitle>
-        <input type="text" {...register("subtitle")} required />
+        <input type="text" aria-label="subtitle" {...register("subtitle")} required />
       </Section>
 
       <Section>
         <Subtitle>How long does it take in minutes to make this dish?</Subtitle>
-        <input type="number" {...register("cookingTimeInMins")} required />
+        <input type="number" aria-label="time" {...register("cookingTimeInMins")} required />
       </Section>
 
       <Section>

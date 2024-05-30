@@ -15,7 +15,7 @@ export const ReviewForm = ({ recipeId }: { recipeId: string }) => {
   const [rateRecipe] = useMutation(RATE_RECIPE);
 
   // Prepare data to submit review
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: Review) => {
     if (!recipeId) {
       alert("Missing recipe ID");
       return;
@@ -48,16 +48,24 @@ export const ReviewForm = ({ recipeId }: { recipeId: string }) => {
       <Title>Add your review</Title>
       <>
         <Subtitle>Comment</Subtitle>
-        <textarea {...register("comment")} />
+        <textarea aria-label="comment" {...register("comment")} />
       </>
       <>
         <Subtitle>Rating</Subtitle>
-        0<input type="range" min="0" max="5" {...register("rating")} />5
+        0
+        <input
+          type="range"
+          aria-label="rating"
+          min="0"
+          max="5"
+          {...register("rating")}
+        />
+        5
       </>
 
       <>
         <Subtitle>Your name</Subtitle>
-        <input type="text" {...register("name")} />
+        <input type="text" aria-label="name" {...register("name")} />
       </>
       <input type="submit" />
     </form>

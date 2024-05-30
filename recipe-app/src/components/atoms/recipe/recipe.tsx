@@ -108,7 +108,10 @@ export const Recipe = ({
             >
               {title}
             </Title>
-            <FavoriteButton onClick={handleFavorite}>
+            <FavoriteButton
+              onClick={handleFavorite}
+              data-testId="favorite-button"
+            >
               {isFavorite ? (
                 <FavoriteFilled size={25} />
               ) : (

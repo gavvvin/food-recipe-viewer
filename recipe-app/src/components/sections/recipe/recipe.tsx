@@ -1,12 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { GET_RECIPE } from "../../utils/queries";
-import {
-  Caption,
-  Subtitle,
-  TimeText,
-  Title,
-  TitleLg,
-} from "../../atoms/text/text";
+import { Subtitle, TimeText, Title, TitleLg } from "../../atoms/text/text";
 import {
   FlexBox,
   ReviewBox,
