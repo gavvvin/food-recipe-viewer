@@ -45,12 +45,28 @@ Follow the instructions below to set up your development environment and start b
 
    `yarn install`
 
+4. Seed the database by first running the back-end server:
+
+   `yarn server:start`
+
+   Then, invoke the API call:
+
+   `PUT {YOUR_ENDPOINT}/seed`
+
+
 ## Running the Application
 
 To start the front-end and back-end components locally, use the following commands:
 
 - Front-end: `yarn dev`
 - Back-end: `yarn server:start`
+
+## Linting
+
+To run the linter, use the following command:
+
+`yarn lint`
+
 
 ## Formatting
 
@@ -76,6 +92,7 @@ To create an optimized build for production, run the following command:
 
 - Testing limitations: Currently the `yarn test` command does not execute property. This is believed to be an issue with conflicting yarn packages in the monorepo structure. However, unit test scripts have been written for most components, though remain untested.
 - Enhanced error handling: The front-end can be improved to display more meaningful error messages or alternative actions when receiving API responses. Additionally, responses should be modified to return appropriate error codes and messages.
+- Image attachment: Users are currently unable to attach images when creating a new recipe.
 
 ## Future Features
 
@@ -86,4 +103,4 @@ To create an optimized build for production, run the following command:
 - Recipe editing: Enable users to edit recipes, depending on the login system implementation.
 - Unit conversion: Display converted units in the recipe (e.g., °C to °F) when users hover over ingredients.
 - Storybook integration: Incorporate Storybook for easier component development and testing.
-- Comprehensive testing: Develop end-to-end testing scripts to automate the testing process for the entire application.
+- End-to-end testing: Develop end-to-end testing scripts to automate the testing process for the entire application.
