@@ -8,7 +8,7 @@ import { SelectBox } from "../../atoms/select/select";
 import { Button } from "../../atoms/button/button";
 import styled from "styled-components";
 
-const TopControlBox = styled.div`
+const BoxRelativePosition = styled.div`
   position: relative;
   margin-bottom: 3rem;
 `;
@@ -54,7 +54,7 @@ export const Recipes = () => {
 
   return (
     <>
-      <TopControlBox>
+      <BoxRelativePosition>
         <div>
           <SelectBox onChange={(e) => filterTable(e.target.value)}>
             <option value="any" selected>
@@ -73,7 +73,7 @@ export const Recipes = () => {
             Create Recipe
           </Button>
         </ButtonWrapper>
-      </TopControlBox>
+      </BoxRelativePosition>
 
       <Grid>
         {recipes?.length > 0 &&

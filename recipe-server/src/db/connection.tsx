@@ -1,5 +1,6 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 
+// connect to mongodb, using Recipes table
 export async function connectToDB() {
   const uri = process.env.MONGO_DB_ENDPOINT || "";
   const client = new MongoClient(uri, {

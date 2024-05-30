@@ -6,7 +6,7 @@ import { CREATE_RECIPE } from "../../utils/queries";
 import { useRouter } from "next/router";
 import { Button } from "../../atoms/button/button";
 
-// Static diet types, to be fetched from API
+// Static diet types. TODO: fetch these from an API endpoint
 const dietTypes = [
   { value: "VEGETARIAN", name: "Vegetarian" },
   { value: "VEGAN", name: "Vegan" },
@@ -78,14 +78,25 @@ export const CreateRecipe = () => {
         <Subtitle>
           Write a few words about what&apos;s special about this dish.
         </Subtitle>
-        <input type="text" aria-label="subtitle" {...register("subtitle")} required />
+        <input
+          type="text"
+          aria-label="subtitle"
+          {...register("subtitle")}
+          required
+        />
       </Section>
 
       <Section>
         <Subtitle>How long does it take in minutes to make this dish?</Subtitle>
-        <input type="number" aria-label="time" {...register("cookingTimeInMins")} required />
+        <input
+          type="number"
+          aria-label="time"
+          {...register("cookingTimeInMins")}
+          required
+        />
       </Section>
 
+      {/* Click add to add a new ingredient entry, all fields are required but an entry can be removed */}
       <Section>
         <Subtitle>What ingredients do you need?</Subtitle>
         {ingredients.fields.map((item, index) => (
@@ -135,6 +146,7 @@ export const CreateRecipe = () => {
         </Button>
       </Section>
 
+      {/* Click add to add a new step entry, all fields are required but an entry can be removed */}
       <Section>
         <Subtitle>Now, what are the steps of making this dish?</Subtitle>
         {instructions.fields.map((item, index) => (

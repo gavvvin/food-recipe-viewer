@@ -1,5 +1,7 @@
 import { gql } from "@apollo/client";
 
+// List of GraphQL queries and mutations, the response body can be modified to fetch different fields.
+
 // ======== QUERIES ========
 
 export const GET_RECIPES = gql`

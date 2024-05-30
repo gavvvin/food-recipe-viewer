@@ -8,6 +8,7 @@ export const getRecipes = async (id?: string) => {
     const recipesCollection = db.collection("recipes");
     const userCollection = db.collection("users");
 
+    // return the recipe with specified ID if one is provided, otherwise return the whole collection.
     if (id) {
       return await recipesCollection
         .findOne({ _id: new ObjectId(id) })
@@ -51,6 +52,7 @@ export const getUser = async (userId: string) => {
     const recipesCollection = db.collection("recipes");
     const userCollection = db.collection("users");
 
+    // look for specified user and add any recipe they created to the response body.
     return await userCollection
       .findOne({ userId: parseInt(userId) })
       .then(async (data) => {
