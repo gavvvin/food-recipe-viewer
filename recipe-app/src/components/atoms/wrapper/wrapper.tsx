@@ -17,7 +17,7 @@ export const SafeAreaWrapper = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
-  padding-top: 7rem;
+  padding: 7rem 0 10rem 0;
 `;
 
 export const Grid = styled.div`
