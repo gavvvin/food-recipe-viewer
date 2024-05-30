@@ -5,16 +5,19 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+package-lock.json
+yarn.lock
 
 # testing
 /coverage
 
 # next.js
-/.next/
+/recipe-app/.next/
 /out/
 
 # production
 /build
+
 
 # misc
 .DS_Store
@@ -26,7 +29,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env*.local
+.env
 
 # vercel
 .vercel

@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# FoodieHub App
+
+This repository contains the FoodieHub web app, which allows users to browse, create, and rate recipes. Users can cook delicious meals using these recipes. The application has both front-end and back-end components.
+
+## Project Details
+
+The web app consists of the following components:
+
+1. **Front-end**: Built using Next.js and React, the front-end provides a user interface for viewing, creating, and rating recipes. Responsive design has been considered here.
+2. **Back-end**: Developed using Node.js, Express, and MongoDB, the back-end handles the fetching, updating, and storing of recipe data.
+
+### Application Features
+
+- View a list of all recipes
+- View a single recipe in detail
+- Save recipes to favorites
+- Create recipes
+- View recipes that the user created
+- Rate recipes
 
 ## Getting Started
 
-First, run the development server:
+Follow the instructions below to set up your development environment and start building your FoodieHub application.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js 12.0 or higher
+- yarn
+- MongoDB
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Create a MongoDB instance and a recipe database in it.
 
-## Learn More
+2. Setting Up Environment Variables
 
-To learn more about Next.js, take a look at the following resources:
+   Create a `.env` file in the root of your project directory and add the following environment variables. Make sure to fill in the appropriate values for your specific setup.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```
+   MONGODB_ENDPOINT=
+   NEXT_PUBLIC_API_ENDPOINT={YOUR_ENDPOINT}/graphql
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. Install the necessary dependencies:
 
-## Deploy on Vercel
+   `yarn install`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Seed the database by first running the back-end server:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   `yarn server:start`
+
+   Then, invoke the API call:
+
+   `PUT {YOUR_ENDPOINT}/seed`
+
+
+## Running the Application
+
+To start the front-end and back-end components locally, use the following commands:
+
+- Front-end: `yarn dev`
+- Back-end: `yarn server:start`
+
+## Linting
+
+To run the linter, use the following command:
+
+`yarn lint`
+
+
+## Formatting
+
+To format the code, use the following command:
+
+`yarn format`
+
+## Testing
+
+To test the code, use the following command:
+
+`yarn test`
+
+Note: there is an issue with testing, please see _Known Issues_ section below
+
+## Building for Production
+
+To create an optimized build for production, run the following command:
+
+`yarn build`
+
+## Known Issues
+
+- Testing limitations: Currently the `yarn test` command does not execute property. This is believed to be an issue with conflicting yarn packages in the monorepo structure. However, unit test scripts have been written for most components, though remain untested.
+- Enhanced error handling: The front-end can be improved to display more meaningful error messages or alternative actions when receiving API responses. Additionally, responses should be modified to return appropriate error codes and messages.
+- Image attachment: Users are currently unable to attach images when creating a new recipe.
+
+## Future Features
+
+- Recipe filtering: Implement a filtering functionality for easier recipe discovery.
+- Pagination: Introduce pagination to handle a large number of recipes more effectively.
+- Grid/List view toggle: Allow users to switch between grid and list views for better screen readability.
+- Login system: Create a login system to manage user accounts.
+- Recipe editing: Enable users to edit recipes, depending on the login system implementation.
+- Unit conversion: Display converted units in the recipe (e.g., °C to °F) when users hover over ingredients.
+- Storybook integration: Incorporate Storybook for easier component development and testing.
+- End-to-end testing: Develop end-to-end testing scripts to automate the testing process for the entire application.

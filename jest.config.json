@@ -1,0 +1,17 @@
+{
+  "preset": "ts-jest",
+  "testEnvironment": "jsdom",
+  "setupFilesAfterEnv": ["<rootDir>/recipe-app/jest.setup.ts"],
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  "globals": {
+    "ts-jest": {
+      "useESM": true
+    }
+  },
+  "extensionsToTreatAsEsm": [".ts", ".tsx", ".js", ".jsx"],
+  "moduleNameMapper": {
+    "^(.+?\\.js)(\\?[^?]+)?$": "$1"
+  }
+}
