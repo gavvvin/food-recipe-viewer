@@ -64,13 +64,15 @@ export const Recipe = ({
 
   const handleFavorite = async () => {
     try {
-      const { data } = await setFavorite({
+      const { data, errors } = await setFavorite({
         variables: {
           userId: 1,
           isFavorite: !isFavorite,
           recipeId: recipeId,
         },
       });
+
+      if (errors) throw new Error();
 
       window.location.reload();
     } catch (error) {

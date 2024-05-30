@@ -4,16 +4,31 @@ import { Subtitle, Title } from "../../atoms/text/text";
 import { useMutation } from "@apollo/client";
 import { CREATE_RECIPE } from "../../utils/queries";
 import { useRouter } from "next/router";
+import { Button } from "../../atoms/button/button";
+
+// Static diet types, to be fetched from API
+const dietTypes = [
+  { value: "VEGETARIAN", name: "Vegetarian" },
+  { value: "VEGAN", name: "Vegan" },
+  { value: "GLUTEN_FREE", name: "Gluten-free" },
+  { value: "DIARY_FREE", name: "Diary-free" },
+  { value: "HIGH_PROTEIN", name: "High-protein" },
+  { value: "LOW_FAT", name: "Low fat" },
+  { value: "NUT_FREE", name: "Nut-free" },
+  { value: "EGG_FREE", name: "Egg-free" },
+];
 
 export const CreateRecipe = () => {
   const router = useRouter();
-  const { handleSubmit, register, control, reset } = useForm();
+  const { handleSubmit, register, control } = useForm({});
 
+  // create field array for ingredients and instructions to capture multiple field entries
   const ingredients = useFieldArray({ control, name: "ingredients" });
   const instructions = useFieldArray({ control, name: "instructions" });
 
   const [createRecipe] = useMutation(CREATE_RECIPE);
 
+  // handle submit forms
   const submitRecipe = (recipe) => {
     // include only diet types that has been selected
     const selectedDiet = Object.entries(recipe.dietTypes)
@@ -42,6 +57,7 @@ export const CreateRecipe = () => {
     })
       .then(() => {
         // Return to homepage
+        alert("Recipe submitted!");
         router.push("/");
       })
       .catch((error) => {
@@ -98,17 +114,25 @@ export const CreateRecipe = () => {
               required
             />
 
-            <button type="button" onClick={() => ingredients.remove(index)}>
+            <Button
+              small
+              variant="secondary"
+              type="button"
+              onClick={() => ingredients.remove(index)}
+            >
               Remove
-            </button>
+            </Button>
           </div>
         ))}
-        <button
+
+        <Button
+          variant="secondary"
+          small
           type="button"
           onClick={() => ingredients.append({ name: "", amount: "", unit: "" })}
         >
           Add ingredient
-        </button>
+        </Button>
       </Section>
 
       <Section>
@@ -121,14 +145,24 @@ export const CreateRecipe = () => {
               {...register(`instructions.${index}`)}
               required
             />
-            <button type="button" onClick={() => instructions.remove(index)}>
+            <Button
+              variant="secondary"
+              small
+              type="button"
+              onClick={() => instructions.remove(index)}
+            >
               Remove
-            </button>
+            </Button>
           </div>
         ))}
-        <button type="button" onClick={() => instructions.append("")}>
+        <Button
+          variant="secondary"
+          small
+          type="button"
+          onClick={() => instructions.append("")}
+        >
           Add step
-        </button>
+        </Button>
       </Section>
 
       <Section>
@@ -136,72 +170,23 @@ export const CreateRecipe = () => {
           Is this recipe suitable for any of these diet types?
         </Subtitle>
 
-        <>
-          <input
-            id="VEGETARIAN"
-            type="checkbox"
-            {...register("dietTypes.VEGETARIAN")}
-          />
-          Vegetarian
-        </>
-
-        <>
-          <input id="VEGAN" type="checkbox" {...register("dietTypes.VEGAN")} />
-          Vegan
-        </>
-
-        <>
-          <input
-            id="GLUTEN_FREE"
-            type="checkbox"
-            {...register("dietTypes.GLUTEN_FREE")}
-          />
-          Gluten-free
-        </>
-
-        <>
-          <input
-            id="DIARY_FREE"
-            type="checkbox"
-            {...register("dietTypes.DIARY_FREE")}
-          />
-          Diary-free
-        </>
-        <>
-          <input
-            id="HIGH_PROTEIN"
-            type="checkbox"
-            {...register("dietTypes.HIGH_PROTEIN")}
-          />
-          High-protein
-        </>
-        <>
-          <input
-            id="LOW_FAT"
-            type="checkbox"
-            {...register("dietTypes.LOW_FAT")}
-          />
-          Low fat
-        </>
-        <>
-          <input
-            id="NUT_FREE"
-            type="checkbox"
-            {...register("dietTypes.NUT_FREE")}
-          />
-          Nut-free
-        </>
-        <>
-          <input
-            id="EGG_FREE"
-            type="checkbox"
-            {...register("dietTypes.EGG_FREE")}
-          />
-          Egg-free
-        </>
+        {dietTypes.map((type) => {
+          return (
+            <>
+              <input
+                id={type.value}
+                type="checkbox"
+                {...register("dietTypes.VEGETARIAN")}
+              />
+              {type.name}
+            </>
+          );
+        })}
       </Section>
 
-      <button type="submit">Submit recipe</button>
+      <Button variant="primary" small type="submit">
+        Submit recipe
+      </Button>
     </form>
   );
 };

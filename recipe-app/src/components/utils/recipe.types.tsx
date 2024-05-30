@@ -6,7 +6,7 @@ type Ingredient = {
 
 type Recipe = {
   recipeId: string;
-  author: string;
+  author?: string;
   authorId?: string;
   title: string;
   subtitle: string;

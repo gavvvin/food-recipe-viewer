@@ -5,6 +5,19 @@ import { Recipe } from "../../atoms/recipe/recipe";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { SelectBox } from "../../atoms/select/select";
+import { Button } from "../../atoms/button/button";
+import styled from "styled-components";
+
+const TopControlBox = styled.div`
+  position: relative;
+  margin-bottom: 3rem;
+`;
+
+const ButtonWrapper = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0.5rem;
+`;
 
 // Recipe cards in a grid layout
 export const Recipes = () => {
@@ -41,19 +54,26 @@ export const Recipes = () => {
 
   return (
     <>
-      <button onClick={() => router.push("/create-recipe")}>
-        Create Recipe
-      </button>
+      <TopControlBox>
+        <div>
+          <SelectBox onChange={(e) => filterTable(e.target.value)}>
+            <option value="any" selected>
+              Any
+            </option>
+            <option value="myRecipes">My recipes</option>
+            <option value="myFavorites">Favourite recipes</option>
+          </SelectBox>
+        </div>
 
-      <div>
-        <SelectBox onChange={(e) => filterTable(e.target.value)}>
-          <option value="any" selected>
-            Any
-          </option>
-          <option value="myRecipes">My recipes</option>
-          <option value="myFavorites">Favourite recipes</option>
-        </SelectBox>
-      </div>
+        <ButtonWrapper>
+          <Button
+            variant={"primary"}
+            onClick={() => router.push("/create-recipe")}
+          >
+            Create Recipe
+          </Button>
+        </ButtonWrapper>
+      </TopControlBox>
 
       <Grid>
         {recipes?.length > 0 &&
@@ -68,6 +88,7 @@ export const Recipes = () => {
                 image={recipe.image}
                 cookingTimeInMins={recipe.cookingTimeInMins}
                 dietTypes={recipe.dietTypes}
+                // compare whether recipe ID exists in my favourite recipe array
                 isFavorite={
                   me?.data?.me?.favoriteRecipes &&
                   me?.data?.me?.favoriteRecipes.some((favoriteRecipe) => {
